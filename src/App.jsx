@@ -7,6 +7,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Products from './pages/Products';
 import AddProductForm from './pages/AddProducts';
+import AdminLogin from './admin/AdminLogin';
+import ProtectedRoute from './admin/ProtectedRoute';
 
 // Create Product Context
 export const ProductContext = createContext();
@@ -27,7 +29,16 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/addproducts" element={<AddProductForm />} />
+            <Route path="/admin" element={<AdminLogin />} />
+            {/* Protect the Add Product page */}
+            <Route
+              path="/addproducts"
+              element={
+                <ProtectedRoute>
+                  <AddProductForm />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </main>
         <Footer />

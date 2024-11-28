@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Create a context to share products between pages
@@ -60,7 +60,17 @@ const AddProductForm = () => {
       alert("Please fill in all fields!");
     }
   };
+  useEffect(() => {
+    const handleUnload = () => {
+      localStorage.removeItem("isAdmin");
+    };
 
+    window.addEventListener("beforeunload", handleUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, []);
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-3xl font-bold mb-6">Add New Product</h2>
