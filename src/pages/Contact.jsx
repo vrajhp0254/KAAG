@@ -4,14 +4,22 @@ const Contact = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="contact-hero bg-cover bg-center text-white flex items-center justify-center h-[40vh] bg-gray-700">
-        <div className="text-center px-4">
-          <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl">
-            Reach out to us for inquiries, partnerships, or support.
-          </p>
-        </div>
-      </section>
+      <section
+  className="relative bg-cover bg-center text-white flex items-center justify-center h-[50vh]"
+  style={{ backgroundImage: "url('/contact.webp" }}
+>
+  {/* Black Overlay */}
+  <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+  
+  {/* Text Content */}
+  <div className="relative text-center px-4">
+    <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
+    <p className="text-xl">
+    Reach out to us for inquiries, partnerships, or support.
+    </p>
+  </div>
+</section>
+
 
       {/* Contact Form Section */}
       <section className="contact-form py-16 bg-gray-100">
@@ -94,15 +102,7 @@ const Contact = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">Our Location</h2>
           <div className="relative overflow-hidden rounded shadow-lg" style={{ height: "400px" }}>
-            <iframe
-              title="Google Maps Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093744!2d-122.41941558468106!3d37.77492927975942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808a74a3c317%3A0xa2e3c40e4fb7ed85!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1617638884201!5m2!1sen!2sus"
-              width="100%"
-              height="400"
-              style={{ border: "0" }}
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3656.667635567557!2d72.97064257533067!3d23.580377578786884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjPCsDM0JzQ5LjQiTiA3MsKwNTgnMjMuNiJF!5e0!3m2!1sen!2sin!4v1733154279024!5m2!1sen!2sin" width="100%" height="450" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </section>

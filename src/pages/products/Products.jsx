@@ -40,8 +40,15 @@ const Products = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="products-hero bg-cover bg-center text-white flex items-center justify-center h-[50vh] bg-gray-700">
-        <div className="text-center px-4">
+      <section
+        className=" relative bg-cover bg-center text-white flex items-center justify-center h-[50vh]"
+        style={{ backgroundImage: "url('/product.webp')" }}
+      >
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+
+        {/* Text Content */}
+        <div className="relative text-center px-4">
           <h1 className="text-5xl font-bold mb-4">Products & Services</h1>
           <p className="text-xl">
             Offering a diverse range of goods across industries with quality and
@@ -68,7 +75,7 @@ const Products = () => {
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-40 object-cover rounded mb-4"
+                      className="w-full h-40 object-contain rounded mb-4"
                     />
                     <h3 className="text-xl font-semibold">{product.title}</h3>
                     <p>{product.description}</p>
@@ -119,9 +126,9 @@ const Products = () => {
           </p>
           <div className="flex justify-center mt-6">
             <a href="/about">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded">
-              Learn More
-            </button>
+              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded">
+                Learn More
+              </button>
             </a>
           </div>
         </div>

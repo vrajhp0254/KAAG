@@ -4,14 +4,22 @@ const AboutUs = () => {
   return (
     <div className="about-us-page">
       {/* Hero Section */}
-      <section className="hero-section bg-blue-900 text-white py-16">
-        <div className="container mx-auto text-center px-6">
-          <h1 className="text-5xl font-bold">About Us</h1>
-          <p className="text-xl mt-4">
-            Bridging Borders, Building Opportunities
-          </p>
-        </div>
-      </section>
+      <section
+  className=" relative bg-cover bg-center text-white flex items-center justify-center h-[50vh]"
+  style={{ backgroundImage: "url('/about.webp')" }}
+>
+  {/* Black Overlay */}
+  <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+  
+  {/* Text Content */}
+  <div className="relative text-center px-4">
+    <h1 className="text-5xl font-bold mb-4">About Us</h1>
+    <p className="text-xl">
+    Bridging Borders, Building Opportunities
+    </p>
+  </div>
+</section>
+
 
       {/* Mission and Vision Section */}
       <section className="mission-vision-section py-16 bg-gray-100">
@@ -37,26 +45,6 @@ const AboutUs = () => {
               To create an integrated global trading platform that connects
               businesses across borders, promotes international trade, and
               contributes to the growth of the global economy.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* About Us Section */}
-      <section className="about-section py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="bg-gray-100 shadow-md rounded-lg p-8">
-            <h2 className="text-3xl font-semibold text-center text-blue-900 mb-6">
-              About Us
-            </h2>
-            <p className="text-gray-700 text-lg text-center">
-              Established with a vision to become a trusted global partner in
-              the import and export industry, KAAG IMPEX Private Limited is a
-              dynamic and forward-thinking company specializing in the
-              international trade of a diverse range of goods. We are dedicated
-              to bridging the gap between manufacturers and consumers across
-              borders by delivering high-quality products and services with
-              unmatched reliability and efficiency.
             </p>
           </div>
         </div>

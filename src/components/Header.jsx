@@ -22,7 +22,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed z-10 w-full transition-all duration-300 ease-in-out  ${
+      className={`fixed z-50 w-full px-5 transition-all duration-300 ease-in-out  ${
         isScrolled
           ? 'bg-white h-16 shadow-lg'
           : 'bg-white bg-opacity-50 h-20'
