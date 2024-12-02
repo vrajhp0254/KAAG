@@ -74,16 +74,15 @@ const Contact = () => {
             </p>
             <div className="space-y-4">
               <p>
-                <strong>Address:</strong> 123 Trade Street, Global City
+                <strong>Address:</strong> 3-81, ff, Tulsi complex,Himmatnagar,Gujarat,India
               </p>
               <p>
-                <strong>Phone:</strong> +1 (234) 567-890
+                <strong>Phone:</strong> <br/>Gopal Trivedi – (+91)9039666969 <br/>
+                Kishan R Patel – (+91)9033497418 
               </p>
+              
               <p>
-                <strong>Email:</strong> info@importexport.com
-              </p>
-              <p>
-                <strong>Working Hours:</strong> Mon - Fri, 9:00 AM - 6:00 PM
+                <strong>Email:</strong> info@kaagimpex.com
               </p>
             </div>
           </div>
@@ -108,16 +107,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="cta py-16 bg-blue-500 text-white text-center">
-        <h2 className="text-3xl font-bold mb-4">We’re Here to Help</h2>
-        <p className="mb-6">
-          Have questions or need assistance? Our team is just a message away.
-        </p>
-        <button className="bg-white text-blue-500 py-2 px-4 rounded hover:bg-gray-200">
-          Contact Us Now
-        </button>
-      </section>
+      
     </div>
   );
 };

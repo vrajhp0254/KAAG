@@ -3,7 +3,6 @@ import { FaPlane, FaShip, FaTruck, FaGlobe } from "react-icons/fa";
 import Caro from "./components/Caro";
 import AboutUs from "./components/AboutUs";
 import Services from "./components/Services";
-import Products from "./components/Products";
 import WhyChooseUs from "./components/WhyChooseUs";
 
 const Home = () => {
@@ -13,7 +12,6 @@ const Home = () => {
       <Caro/>
       <AboutUs/>
       <Services/>
-      <Products/>
       <WhyChooseUs/>
 
       {/* Call-to-Action Section */}

@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
@@ -7,6 +8,9 @@ const Footer = () => {
       <div className="container mx-auto grid md:grid-cols-3 gap-8 px-4">
         {/* About Section */}
         <div>
+          <img className="h-20 m-5" src={logo}>
+          
+          </img>
           <h3 className="text-xl font-bold mb-4">About Us</h3>
           <p className="text-sm">
             We provide seamless import-export solutions to connect businesses
@@ -39,54 +43,18 @@ const Footer = () => {
                 Contact
               </a>
             </li>
-            <li>
-              <a href="/faq" className="hover:underline">
-                FAQs
-              </a>
-            </li>
+            
           </ul>
         </div>
 
         {/* Contact Section */}
         <div>
           <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-          <p className="text-sm mb-2">123 Trade Street, Global City</p>
-          <p className="text-sm mb-2">Phone: +1 (234) 567-890</p>
-          <p className="text-sm mb-4">Email: info@importexport.com</p>
-          <div className="flex space-x-4">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:text-white"
-            >
-              <FaFacebook size={20} />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-white"
-            >
-              <FaTwitter size={20} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-700 hover:text-white"
-            >
-              <FaLinkedin size={20} />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-pink-500 hover:text-white"
-            >
-              <FaInstagram size={20} />
-            </a>
-          </div>
+          <p className="text-sm mb-2">3-81, ff, Tulsi complex,Himmatnagar,Gujarat,India</p>
+          <p className="text-sm mb-2">Gopal Trivedi – (+91)9039666969 </p>
+          <p className="text-sm mb-2" >Kishan R Patel – (+91)9033497418 </p>
+          <p className="text-sm mb-4">Email: info@kaagimpex.com</p>
+          
         </div>
       </div>
 

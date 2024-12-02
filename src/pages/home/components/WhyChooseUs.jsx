@@ -5,7 +5,7 @@ const WhyChooseUs = () => {
     <section className="why-choose-us py-16 bg-gray-100">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Why Choose Us</h2>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               { title: "20+ Years Experience", desc: "Expertise in trade solutions" },
               { title: "Global Network", desc: "Operations in 50+ countries" },

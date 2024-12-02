@@ -1,13 +1,27 @@
 import React from 'react';
-
+import about from '../../../assets/about.png';
 const AboutUs = () => (
   <section id="about" className="p-8 bg-gray-100">
-    <div className="max-w-6xl mx-auto text-center">
-      <h2 className="text-3xl font-bold mb-4">About Us</h2>
-      <p className="text-lg text-gray-700">
-        At ImportExport Co., we are dedicated to bridging businesses across the globe with seamless trade solutions. With a rich history of excellence and innovation, we ensure reliable and efficient services for all your import-export needs.
-      </p>
-    </div>
+    <h2 className="text-3xl font-bold mb-4 text-center">About Us</h2>
+    <div className="max-w-6xl mx-auto text-center flex  justify-between w-screen gap-6">
+  {/* Text Section */}
+  <div className="w-1/2 text-left">
+    
+    <p className="text-lg text-gray-700">
+      At ImportExport Co., we are dedicated to bridging businesses across the globe with seamless trade solutions. With a rich history of excellence and innovation, we ensure reliable and efficient services for all your import-export needs.
+    </p>
+  </div>
+
+  {/* Image Section */}
+  <div className="w-1/2 h-80 relative">
+    <img
+      src={about}
+      alt="About Us"
+      className="absolute  h-full w-full object-fit"
+    />
+  </div>
+</div>
+
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
       {/* Company Vision */}
