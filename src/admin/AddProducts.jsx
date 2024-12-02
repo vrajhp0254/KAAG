@@ -1,5 +1,4 @@
 import React, { useState, createContext, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Create a context to share products between pages
 export const ProductContext = createContext();

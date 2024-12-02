@@ -1,16 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="bg-white shadow-lg px-28">
-      <div className="container mx-auto px-6 py-6 flex justify-between items-center">
-        <h1 className="text-4xl font-bold text-blue-600">KAAG IMPEX</h1>
+    <header
+      className={`fixed z-10 w-full transition-all duration-300 ease-in-out  ${
+        isScrolled
+          ? 'bg-white h-16 shadow-lg'
+          : 'bg-white bg-opacity-50 h-20'
+      }`}
+    >
+      <div className="container mx-auto px-6 flex justify-between items-center h-full">
+        <img
+          src={logo}
+          className={`transition-all duration-300 ease-in-out p-1 ${
+            isScrolled ? 'h-16' : 'h-20'
+          }`}
+          alt="Logo"
+        />
         <nav className="space-x-6 text-2xl ">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "text-blue-600  border-b-2 border-b-blue-600" : "hover:text-blue-600"
+              isActive ? "text-blue-600 border-b-2 border-b-blue-600" : "hover:text-blue-600"
             }
           >
             Home
@@ -18,7 +48,7 @@ const Header = () => {
           <NavLink
             to="/products"
             className={({ isActive }) =>
-              isActive ? "text-blue-600  border-b-2 border-b-blue-600" : "hover:text-blue-600"
+              isActive ? "text-blue-600 border-b-2 border-b-blue-600" : "hover:text-blue-600"
             }
           >
             Products
@@ -26,7 +56,7 @@ const Header = () => {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              isActive ? "text-blue-600  border-b-2 border-b-blue-600" : "hover:text-blue-600"
+              isActive ? "text-blue-600 border-b-2 border-b-blue-600" : "hover:text-blue-600"
             }
           >
             About Us
@@ -34,7 +64,7 @@ const Header = () => {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              isActive ? "text-blue-600  border-b-2 border-b-blue-600" : "hover:text-blue-600"
+              isActive ? "text-blue-600 border-b-2 border-b-blue-600" : "hover:text-blue-600"
             }
           >
             Contact Us

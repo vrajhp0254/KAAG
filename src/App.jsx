@@ -1,12 +1,12 @@
 import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Products from './pages/Products';
-import AddProductForm from './pages/AddProducts';
+import Products from './pages/products/Products';
+import AddProductForm from './admin/AddProducts';
 import AdminLogin from './admin/AdminLogin';
 import ProtectedRoute from './admin/ProtectedRoute';
 
