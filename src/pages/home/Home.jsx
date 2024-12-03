@@ -15,10 +15,10 @@ const Home = () => {
       <WhyChooseUs/>
 
       {/* Call-to-Action Section */}
-      <section className="cta py-16 bg-blue-500 text-white text-center">
+      <section className="cta py-16 bg-[#7bd91d] text-white text-center">
         <h2 className="text-3xl font-bold mb-4">Ready to Expand Your Business Globally?</h2>
         <a href="/contact">
-        <button className="bg-white text-blue-500 py-2 px-4 rounded hover:bg-gray-200">
+        <button className="bg-white text-[#1a538c] py-2 px-4 rounded hover:bg-gray-200">
           Contact Us Today
         </button>
         </a>

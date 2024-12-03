@@ -59,7 +59,7 @@ const Products = () => {
 
       {/* Categorized Products Section */}
       <div className="container mx-auto p-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">
+        <h2 className="text-3xl text-[#1a538c] underline font-bold mb-6 text-center">
           Products Categorized by Industry
         </h2>
         {categories.map((category, index) => {
@@ -68,21 +68,38 @@ const Products = () => {
 
           return (
             <div key={index} className="mb-12">
-              <h3 className="text-2xl font-bold mb-4">{category.title}</h3>
-              <ul className="grid md:grid-cols-3 gap-6">
+              <h3 className="text-2xl font-bold text-[#1a538c] underline mb-4">{category.title}</h3>
+              <ul className="grid md:grid-cols-4 gap-6">
                 {categorizedProducts.map((product, idx) => (
-                  <li key={idx} className="bg-gray-100 p-4 rounded shadow-md">
+                  <li
+                  key={idx}
+                  className="bg-white w-80 p-4 rounded-lg shadow-lg border border-gray-300 mx-auto"
+                >
+                  {/* Fixed Image Container */}
+                  <div className="w-full h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-40 object-contain rounded mb-4"
+                      className="max-w-full max-h-full object-contain"
                     />
-                    <h3 className="text-xl font-semibold">{product.title}</h3>
-                    <p>{product.description}</p>
-                    <p>
-                      <strong>Price:</strong> ${product.price}
-                    </p>
-                  </li>
+                  </div>
+                
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-center text-[#1a538c]">
+                    {product.title}
+                  </h3>
+                
+                  {/* Decorative Line */}
+                  <div className="mb-5 text-center">
+                    <div className="w-12 h-1 bg-[#1a538c] mx-auto "></div>
+                  </div>
+                
+                  {/* Description */}
+                  <p className="text-gray-700 text-lg text-center">{product.description}</p>
+                </li>
+                
+                
+                
                 ))}
               </ul>
             </div>
@@ -92,21 +109,38 @@ const Products = () => {
         {/* Other Products Section */}
         {otherProducts.length > 0 && (
           <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-4">Other Products</h3>
-            <ul className="grid md:grid-cols-3 gap-6">
+            <h3 className="text-2xl font-bold mb-4 text-[#1a538c] underline">Other Products</h3>
+            <ul className="grid md:grid-cols-4 gap-6">
               {otherProducts.map((product, idx) => (
-                <li key={idx} className="bg-gray-100 p-4 rounded shadow-md">
+                <li
+                key={idx}
+                className="bg-white w-80 p-4 rounded-lg shadow-lg border border-gray-300 mx-auto"
+              >
+                {/* Fixed Image Container */}
+                <div className="w-full h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-40 object-cover rounded mb-4"
+                    className="max-w-full max-h-full object-contain"
                   />
-                  <h3 className="text-xl font-semibold">{product.title}</h3>
-                  <p>{product.description}</p>
-                  <p>
-                    <strong>Price:</strong> ${product.price}
-                  </p>
-                </li>
+                </div>
+              
+                {/* Title */}
+                <h3 className="text-2xl font-bold text-center text-[#1a538c]">
+                  {product.title}
+                </h3>
+              
+                {/* Decorative Line */}
+                <div className="mb-5 text-center">
+                  <div className="w-12 h-1 bg-[#1a538c] mx-auto "></div>
+                </div>
+              
+                {/* Description */}
+                <p className="text-gray-700 text-lg text-center">{product.description}</p>
+              </li>
+              
+              
+              
               ))}
             </ul>
           </div>
@@ -115,9 +149,9 @@ const Products = () => {
 
       {/* Commitment Section */}
       <section className="commitment py-16 bg-white">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Our Commitment</h2>
-          <p className="text-lg mb-6">
+        <div className="container mx-auto text-center  w-[60%] flex flex-col  bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
+          <h2 className="text-2xl font-extrabold mb-8 text-center  text-[#1a538c] underline ">Our Commitment</h2>
+          <p className="text-lg mb-6 text-justify">
             At <span className="font-semibold">KAAG IMPEX</span>, we work
             closely with our partners to ensure every product meets the highest
             standards of quality, compliance, and sustainability. We adhere to
@@ -126,12 +160,13 @@ const Products = () => {
           </p>
           <div className="flex justify-center mt-6">
             <a href="/about">
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded">
+              <button className="bg-[#7bd91d] hover:bg-[#669e2d] text-white py-2 px-6 rounded">
                 Learn More
               </button>
             </a>
           </div>
         </div>
+        
       </section>
     </div>
   );

@@ -1,7 +1,8 @@
 import React from "react";
 import about from "../../../assets/about.png";
-
 import { useInView } from "react-intersection-observer";
+
+
 const AboutUs = () => {
   const { ref, inView } = useInView({
     threshold: 0.2, // Trigger when 20% of the section is visible
@@ -15,10 +16,10 @@ const AboutUs = () => {
       </h2>
       <div
         ref={ref}
-        className="w-[85vw] mx-auto text-center flex justify-evenly gap-6"
+        className="w-[80vw] mx-auto text-center flex justify-evenly gap-6 max-lg:flex-wrap"
       >
         {/* Image Section with Animation */}
-        <div className="w-1/2 h-[60vh] relative">
+        <div className="lg:w-1/2 h-[60vh] relative">
           <img
             src={about}
             alt="About Us"
@@ -28,7 +29,7 @@ const AboutUs = () => {
           />
         </div>
         {/* Text Section */}
-        <div className="w-1/2 text-justify p-2 my-auto">
+        <div className="lg:w-1/2 text-justify p-2 my-auto">
           <p className="text-2xl text-gray-700">
             Established with a vision to become a trusted global partner in the
             import and export industry, KAAG IMPEX Private Limited is a dynamic
@@ -41,27 +42,30 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+      <div className="flex gap-10 max-w-5xl mx-auto mt-8 justify-evenly">
         {/* Our Mission */}
-        <div className="flex flex-col items-start bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
-          <p className="text-2xl font-bold mb-4 text-center text-gray-800">Our Mission</p>
+        <div className=" w-[60%] flex flex-col items-start bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
+          <p className="text-2xl font-extrabold mb-6 text-center w-full  text-[#1a538c] underline ">
+            Our Mission
+          </p>
           <p className="text-gray-600 text-lg leading-relaxed">
-            To simplify global trade through innovative logistics solutions,
-            ensuring customer satisfaction and operational excellence.
+            To be a leading player in the global import-export industry by
+            offering exceptional service, superior products, and reliable
+            solutions that drive mutual growth and success for our partners and
+            clients.
           </p>
         </div>
 
         {/* Our Core Values */}
-        <div className="flex flex-col items-start bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
-            Our Core Values
+        <div className=" w-[60%] flex flex-col items-start bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
+          <h3 className="text-2xl font-extrabold mb-6 text-center w-full text-[#1a538c] underline ">
+            Our Vision
           </h3>
-          <ul className="list-disc list-inside text-lg text-gray-600 space-y-2">
-            <li>Integrity and Trust</li>
-            <li>Customer-Centric Approach</li>
-            <li>Operational Excellence</li>
-            <li>Commitment to Innovation</li>
-          </ul>
+          <p className="text-gray-600 text-lg leading-relaxed">
+            To create an integrated global trading platform that connects
+            businesses across borders, promotes international trade, and
+            contributes to the growth of the global economy.
+          </p>
         </div>
       </div>
     </section>

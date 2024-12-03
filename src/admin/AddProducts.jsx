@@ -13,7 +13,6 @@ const AddProductForm = () => {
     title: "",
     description: "",
     category: "",
-    price: "",
     image: null,
   });
 
@@ -39,7 +38,6 @@ const AddProductForm = () => {
       formData.title &&
       formData.description &&
       formData.category &&
-      formData.price &&
       formData.image
     ) {
       setProducts((prevProducts) => {
@@ -52,7 +50,6 @@ const AddProductForm = () => {
         title: "",
         description: "",
         category: "",
-        price: "",
         image: null,
       });
     } else {
@@ -110,17 +107,7 @@ const AddProductForm = () => {
             placeholder="Enter product category"
           />
         </div>
-        <div>
-          <label className="block font-semibold mb-2">Price ($)</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            placeholder="Enter product price"
-          />
-        </div>
+        
         <div>
           <label className="block font-semibold mb-2">Upload Image</label>
           <input type="file" accept="image/*" onChange={handleImageUpload} />
@@ -154,9 +141,6 @@ const AddProductForm = () => {
               <p className="text-gray-600">{product.description}</p>
               <p>
                 <strong>Category:</strong> {product.category}
-              </p>
-              <p>
-                <strong>Price:</strong> ${product.price}
               </p>
             </li>
           ))}

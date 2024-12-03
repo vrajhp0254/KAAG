@@ -8,11 +8,11 @@ const Footer = () => {
       <div className="container mx-auto grid md:grid-cols-3 gap-8 px-4">
         {/* About Section */}
         <div>
-          <img className="h-20 m-5" src={logo}>
+          <img className="h-28 my-2" src={logo}>
           
           </img>
           <h3 className="text-xl font-bold mb-4">About Us</h3>
-          <p className="text-sm">
+          <p className="text-sm text-justify">
             We provide seamless import-export solutions to connect businesses
             worldwide. Trust us to deliver your trade goals with efficiency and
             expertise.
@@ -61,7 +61,7 @@ const Footer = () => {
       {/* Bottom Footer */}
       <div className="mt-8 text-center border-t border-gray-700 pt-4">
         <p className="text-sm">
-          © {new Date().getFullYear()} Import-Export Business. All rights
+          © {new Date().getFullYear()} KAAG IMPEX Pvt Ltd. All rights
           reserved.
         </p>
       </div>

@@ -11,7 +11,7 @@ const Services = () => (
 
     {/* Content */}
     <div className="relative z-10">
-  <h2 className="text-4xl font-extrabold mb-10 text-center text-white underline">Our Services</h2>
+  <h2 className="text-4xl font-extrabold mb-6 text-center  text-white underline ">Our Services</h2>
   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-20 mt-6">
     <div className="p-4 border rounded-lg text-center">
       <h3 className="font-bold text-2xl mb-2">Shipping</h3>
