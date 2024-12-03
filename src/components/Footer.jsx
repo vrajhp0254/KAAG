@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-gray-800 text-white py-8 ">
       <div className="container mx-auto grid md:grid-cols-3 gap-8 px-4">
         {/* About Section */}
         <div>
@@ -21,26 +21,26 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+          <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="/" className="hover:underline">
+              <a href="/" className="text-md  hover:underline">
                 Home
               </a>
             </li>
             <li>
-              <a href="/about" className="hover:underline">
+              <a href="/about" className=" text-md hover:underline">
                 About Us
               </a>
             </li>
             <li>
-              <a href="/services" className="hover:underline">
-                Services
+              <a href="/Product" className="text-md hover:underline">
+                Product
               </a>
             </li>
             <li>
-              <a href="/contact" className="hover:underline">
-                Contact
+              <a href="/contact" className=" text-md hover:underline">
+                Contact Us
               </a>
             </li>
             
@@ -48,12 +48,12 @@ const Footer = () => {
         </div>
 
         {/* Contact Section */}
-        <div>
-          <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-          <p className="text-sm mb-2">3-81, ff, Tulsi complex,Himmatnagar,Gujarat,India</p>
-          <p className="text-sm mb-2">Gopal Trivedi – (+91)9039666969 </p>
-          <p className="text-sm mb-2" >Kishan R Patel – (+91)9033497418 </p>
-          <p className="text-sm mb-4">Email: info@kaagimpex.com</p>
+        <div >
+          <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
+          <p className="text-md mb-2">3-81, ff, Tulsi complex,Himmatnagar,Gujarat,India</p>
+          <p className="text-md mb-2">Gopal Trivedi – (+91)9039666969 </p>
+          <p className="text-md mb-2" >Kishan R Patel – (+91)9033497418 </p>
+          <p className="text-md mb-4">Email: info@kaagimpex.com</p>
           
         </div>
       </div>
