@@ -1,20 +1,28 @@
-import React, { useState, createContext, useEffect } from "react";
-
-// Create a context to share products between pages
-export const ProductContext = createContext();
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const AddProductForm = () => {
-  const [products, setProducts] = useState(() => {
-    const savedProducts = localStorage.getItem("products");
-    return savedProducts ? JSON.parse(savedProducts) : [];
-  });
-
+  const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     category: "",
     image: null,
   });
+
+  // Fetch all products
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/products');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,41 +40,22 @@ const AddProductForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      formData.title &&
-      formData.description &&
-      formData.category &&
-      formData.image
-    ) {
-      setProducts((prevProducts) => {
-        const updatedProducts = [...prevProducts, formData];
-        localStorage.setItem("products", JSON.stringify(updatedProducts));
-        return updatedProducts;
-      });
-
+    try {
+      await axios.post('http://localhost:3000/api/products', formData);
+      fetchProducts(); // Refresh product list
       setFormData({
         title: "",
         description: "",
         category: "",
         image: null,
       });
-    } else {
-      alert("Please fill in all fields!");
+    } catch (error) {
+      console.error('Failed to add product:', error);
     }
   };
-  useEffect(() => {
-    const handleUnload = () => {
-      localStorage.removeItem("isAdmin");
-    };
 
-    window.addEventListener("beforeunload", handleUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleUnload);
-    };
-  }, []);
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-3xl font-bold mb-6">Add New Product</h2>
@@ -107,7 +96,6 @@ const AddProductForm = () => {
             placeholder="Enter product category"
           />
         </div>
-        
         <div>
           <label className="block font-semibold mb-2">Upload Image</label>
           <input type="file" accept="image/*" onChange={handleImageUpload} />
@@ -133,14 +121,14 @@ const AddProductForm = () => {
           {products.map((product, index) => (
             <li key={index} className="bg-gray-100 p-4 rounded shadow-md">
               <img
-                src={product.image}
-                alt={product.title}
+                src={product.Image}
+                alt={product.Title}
                 className="w-20 h-20 object-cover rounded mb-4"
               />
-              <h3 className="text-xl font-semibold">{product.title}</h3>
-              <p className="text-gray-600">{product.description}</p>
+              <h3 className="text-xl font-semibold">{product.Title}</h3>
+              <p className="text-gray-600">{product.Description}</p>
               <p>
-                <strong>Category:</strong> {product.category}
+                <strong>Category:</strong> {product.Category}
               </p>
             </li>
           ))}

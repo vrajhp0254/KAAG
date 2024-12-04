@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Products = () => {
-  const [products] = useState(() => {
-    const savedProducts = localStorage.getItem("products");
-    return savedProducts ? JSON.parse(savedProducts) : [];
-  });
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch products from the server
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products'); // Adjust the URL as needed
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   // Function to categorize products
   const categorizeProducts = (category) => {
@@ -37,11 +55,15 @@ const Products = () => {
 
   const otherProducts = findOtherProducts();
 
+  if (loading) {
+    return <p>Loading products...</p>;
+  }
+
   return (
     <div>
       {/* Hero Section */}
       <section
-        className=" relative bg-cover bg-center text-white flex items-center justify-center h-[50vh]"
+        className="relative bg-cover bg-center text-white flex items-center justify-center h-[50vh]"
         style={{ backgroundImage: "url('/product.webp')" }}
       >
         {/* Black Overlay */}
@@ -72,34 +94,31 @@ const Products = () => {
               <ul className="grid md:grid-cols-4 gap-6">
                 {categorizedProducts.map((product, idx) => (
                   <li
-                  key={idx}
-                  className="bg-white w-80 p-4 rounded-lg shadow-lg border border-gray-300 mx-auto"
-                >
-                  {/* Fixed Image Container */}
-                  <div className="w-full h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-                
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-center text-[#1a538c]">
-                    {product.title}
-                  </h3>
-                
-                  {/* Decorative Line */}
-                  <div className="mb-5 text-center">
-                    <div className="w-12 h-1 bg-[#1a538c] mx-auto "></div>
-                  </div>
-                
-                  {/* Description */}
-                  <p className="text-gray-700 text-lg text-center">{product.description}</p>
-                </li>
-                
-                
-                
+                    key={idx}
+                    className="bg-white w-80 p-4 rounded-lg shadow-lg border border-gray-300 mx-auto"
+                  >
+                    {/* Fixed Image Container */}
+                    <div className="w-full h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-center text-[#1a538c]">
+                      {product.title}
+                    </h3>
+
+                    {/* Decorative Line */}
+                    <div className="mb-5 text-center">
+                      <div className="w-12 h-1 bg-[#1a538c] mx-auto"></div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-700 text-lg text-center">{product.description}</p>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -113,34 +132,31 @@ const Products = () => {
             <ul className="grid md:grid-cols-4 gap-6">
               {otherProducts.map((product, idx) => (
                 <li
-                key={idx}
-                className="bg-white w-80 p-4 rounded-lg shadow-lg border border-gray-300 mx-auto"
-              >
-                {/* Fixed Image Container */}
-                <div className="w-full h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="max-w-full max-h-full object-contain"
-                  />
-                </div>
-              
-                {/* Title */}
-                <h3 className="text-2xl font-bold text-center text-[#1a538c]">
-                  {product.title}
-                </h3>
-              
-                {/* Decorative Line */}
-                <div className="mb-5 text-center">
-                  <div className="w-12 h-1 bg-[#1a538c] mx-auto "></div>
-                </div>
-              
-                {/* Description */}
-                <p className="text-gray-700 text-lg text-center">{product.description}</p>
-              </li>
-              
-              
-              
+                  key={idx}
+                  className="bg-white w-80 p-4 rounded-lg shadow-lg border border-gray-300 mx-auto"
+                >
+                  {/* Fixed Image Container */}
+                  <div className="w-full h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-center text-[#1a538c]">
+                    {product.title}
+                  </h3>
+
+                  {/* Decorative Line */}
+                  <div className="mb-5 text-center">
+                    <div className="w-12 h-1 bg-[#1a538c] mx-auto"></div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-700 text-lg text-center">{product.description}</p>
+                </li>
               ))}
             </ul>
           </div>
@@ -149,14 +165,12 @@ const Products = () => {
 
       {/* Commitment Section */}
       <section className="commitment py-16 bg-white">
-        <div className="container mx-auto text-center  w-[60%] flex flex-col  bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
-          <h2 className="text-2xl font-extrabold mb-8 text-center  text-[#1a538c] underline ">Our Commitment</h2>
+        <div className="container mx-auto text-center w-[60%] flex flex-col bg-white p-8 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
+          <h2 className="text-2xl font-extrabold mb-8 text-center text-[#1a538c] underline">
+            Our Commitment
+          </h2>
           <p className="text-lg mb-6 text-justify">
-            At <span className="font-semibold">KAAG IMPEX</span>, we work
-            closely with our partners to ensure every product meets the highest
-            standards of quality, compliance, and sustainability. We adhere to
-            international regulations and prioritize environmental and social
-            responsibility in every transaction.
+            At <span className="font-semibold">KAAG IMPEX</span>, we work closely with our partners to ensure every product meets the highest standards of quality, compliance, and sustainability. We adhere to international regulations and prioritize environmental and social responsibility in every transaction.
           </p>
           <div className="flex justify-center mt-6">
             <a href="/about">
@@ -166,7 +180,6 @@ const Products = () => {
             </a>
           </div>
         </div>
-        
       </section>
     </div>
   );

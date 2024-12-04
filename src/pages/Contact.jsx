@@ -22,9 +22,8 @@ const Contact = () => {
 
       {/* Contact Form Section */}
       <section className="contact-form py-16 bg-gray-100">
-        <div className="container max-w-6xl mx-auto grid md:grid-cols-2 gap-24">
           {/* Form */}
-          <div className="bg-[#7bd91d] shadow-md p-6 rounded">
+          <div className="bg-[#7bd91d] w-[40%] mx-auto shadow-md p-6 rounded">
             <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
             <form className="space-y-4">
               <div>
@@ -129,12 +128,9 @@ const Contact = () => {
 
           {/* Contact Info */}
           <div className="bg-white shadow-lg p-6 rounded">
-            <h2 className="text-3xl font-bold mb-6">Contact Information</h2>
-            <p className="mb-4">
-              Reach out to us via phone, email, or visit our office. We’d love
-              to hear from you!
-            </p>
-            <div className="space-y-4">
+            <h2 className="text-3xl font-bold mb-6 text-center">Contact Information</h2>
+            
+            <div className="space-y-4 flex gap-10 items-center justify-between">
               <p>
                 <strong>Address:</strong> At - 3-81, FF, Tulsi Complex, Kankrol, Himatnagar, Sabarkantha-383001, Gujarat
               </p>
@@ -149,7 +145,6 @@ const Contact = () => {
               </p>
             </div>
           </div>
-        </div>
       </section>
 
       {/* Map Section */}
