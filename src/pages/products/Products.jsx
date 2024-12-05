@@ -61,7 +61,23 @@ const Products = ({ onProductAdded }) => {
   const otherProducts = findOtherProducts();
 
   if (loading) {
-    return <p>Loading products...</p>;
+    return <p>
+      <section
+        className="relative bg-cover bg-center text-white flex items-center justify-center h-[50vh]"
+        style={{ backgroundImage: "url('/product.webp')" }}
+      >
+        {/* Black Overlay */}
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+
+        {/* Text Content */}
+        <div className="relative text-center px-4">
+          <h1 className="text-5xl font-bold mb-4">Products & Services</h1>
+          <p className="text-xl">
+            Offering a diverse range of goods across industries with quality and
+            sustainability in focus.
+          </p>
+        </div>
+      </section>Loading products...</p>;
   }
 
   return (

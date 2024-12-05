@@ -1,6 +1,67 @@
-import React from "react";
+import React,{useState} from "react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    companyName: "",
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    productType: "",
+    productDetail: "",
+  });
+
+  const [status, setStatus] = useState({
+    message: "",
+    type: "", // 'success' or 'error'
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/products/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({
+          message: "Thank you for your inquiry. We'll get back to you soon!",
+          type: "success",
+        });
+        // Clear form
+        setFormData({
+          companyName: "",
+          fullName: "",
+          email: "",
+          phoneNumber: "",
+          productType: "",
+          productDetail: "",
+        });
+      } else {
+        throw new Error(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      setStatus({
+        message: error.message,
+        type: "error",
+      });
+    }
+  };
+
   return (
     <div>
       {/* Hero Section */}
@@ -15,124 +76,37 @@ const Contact = () => {
         <div className="relative text-center px-4">
           <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl">
-            Reach out to us for inquiries, partnerships, or support.
+            For inquiries, partnerships, or more information about our services,
+            please reach out to us:
           </p>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="contact-form py-16 bg-gray-100">
-          {/* Form */}
-          <div className="bg-[#7bd91d] w-[40%] mx-auto shadow-md p-6 rounded">
-            <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
-            <form className="space-y-4">
-              <div>
-                <label
-                  className="block text-sm font-semibold mb-2"
-                  htmlFor="name"
-                >
-                  Company Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full border rounded p-2"
-                  placeholder="Enter your full name"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-sm font-semibold mb-2"
-                  htmlFor="name"
-                >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full border rounded p-2"
-                  placeholder="Enter your full name"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-sm font-semibold mb-2"
-                  htmlFor="email"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full border rounded p-2"
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-sm font-semibold mb-2"
-                  htmlFor="email"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full border rounded p-2"
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-sm font-semibold mb-2"
-                  htmlFor="email"
-                >
-                  Product type
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full border rounded p-2"
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-              
-              <div>
-                <label
-                  className="block text-sm font-semibold mb-2"
-                  htmlFor="message"
-                >
-                  Product detail
-                </label>
-                <textarea
-                  id="message"
-                  className="w-full border rounded p-2"
-                  rows="5"
-                  placeholder="Write your message here"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+      <section className="contact-form py-16 bg-gray-100 flex  max-w-7xl mx-auto">
+        {/* Form */}
+        <div className="w-1/2 flex flex-col gap-10 mx-auto">
+          <div className="bg-white shadow-lg p-6 rounded ">
+            <h2 className="text-3xl font-bold text-center mb-8 text-[#1a538c] underline">
+              Global Reach
+            </h2>
 
-          {/* Contact Info */}
-          <div className="bg-white shadow-lg p-6 rounded">
-            <h2 className="text-3xl font-bold mb-6 text-center">Contact Information</h2>
-            
-            <div className="space-y-4 flex gap-10 items-center justify-between">
+            <div className="text-justify text-lg ">
+              KAAG IMPEX Private Limited operates in key markets across North
+              America, Europe, Asia, and Africa. Our extensive network of
+              partners and agents enables us to navigate complex trade
+              environments and deliver products to any corner of the globe.
+            </div>
+          </div>
+          <div className="bg-white shadow-lg p-6 rounded text-lg">
+            <h2 className="text-3xl font-bold text-center mb-8 text-[#1a538c] underline">
+              Contact Information
+            </h2>
+
+            <div className="space-y-4 ">
               <p>
-                <strong>Address:</strong> At - 3-81, FF, Tulsi Complex, Kankrol, Himatnagar, Sabarkantha-383001, Gujarat
+                <strong>Address:</strong> At - 3-81, FF, Tulsi Complex, Kankrol,
+                Himatnagar, Sabarkantha-383001, Gujarat
               </p>
               <p>
                 <strong>Phone:</strong> <br />
@@ -145,6 +119,140 @@ const Contact = () => {
               </p>
             </div>
           </div>
+        </div>
+        <div className=" w-[40%] mx-auto shadow-md p-6 rounded ">
+          <h2 className="text-3xl font-bold text-center mb-8 text-[#1a538c] underline">
+            Get in Touch
+          </h2>
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div>
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="companyName"
+              >
+                Company Name
+              </label>
+              <input
+                type="text"
+                id="companyName"
+                name="companyName"
+                value={formData.companyName}
+                onChange={handleChange}
+                className="w-full border rounded p-2"
+                placeholder="Enter your company name"
+                required
+              />
+            </div>
+            <div>
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="fullName"
+              >
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                className="w-full border rounded p-2"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div>
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="email"
+              >
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border rounded p-2"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div>
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="phoneNumber"
+              >
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                className="w-full border rounded p-2"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+            <div>
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="productType"
+              >
+                Product type
+              </label>
+              <input
+                type="text"
+                id="productType"
+                name="productType"
+                value={formData.productType}
+                onChange={handleChange}
+                className="w-full border rounded p-2"
+                placeholder="Enter product type"
+                required
+              />
+            </div>
+            
+            <div>
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="productDetail"
+              >
+                Product detail
+              </label>
+              <textarea
+                id="productDetail"
+                name="productDetail"
+                value={formData.productDetail}
+                onChange={handleChange}
+                className="w-full border rounded p-2"
+                rows="5"
+                placeholder="Write product details here"
+                required
+              ></textarea>
+            </div>
+
+            {status.message && (
+              <div className={`p-3 rounded ${
+                status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+              }`}>
+                {status.message}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        {/* Contact Info */}
       </section>
 
       {/* Map Section */}
