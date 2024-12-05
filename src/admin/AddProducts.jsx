@@ -7,16 +7,16 @@ const AddProductForm = () => {
     title: "",
     description: "",
     category: "",
-    image: null,
+    image: "", // Now stores an image URL
   });
 
-  // Fetch all products
+  // Fetch all products from MongoDB
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/products');
+      const response = await axios.get("http://localhost:3000/api/products");
       setProducts(response.data);
     } catch (error) {
-      console.error('Failed to fetch products:', error);
+      console.error("Failed to fetch products:", error);
     }
   };
 
@@ -29,30 +29,20 @@ const AddProductForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, image: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/api/products', formData);
+      // Send data to the server to save in MongoDB
+      await axios.post("http://localhost:3000/api/products", formData);
       fetchProducts(); // Refresh product list
       setFormData({
         title: "",
         description: "",
         category: "",
-        image: null,
+        image: "",
       });
     } catch (error) {
-      console.error('Failed to add product:', error);
+      console.error("Failed to add product:", error);
     }
   };
 
@@ -97,8 +87,15 @@ const AddProductForm = () => {
           />
         </div>
         <div>
-          <label className="block font-semibold mb-2">Upload Image</label>
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
+          <label className="block font-semibold mb-2">Image URL</label>
+          <input
+            type="text"
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            placeholder="Enter image URL"
+          />
           {formData.image && (
             <img
               src={formData.image}
@@ -120,15 +117,17 @@ const AddProductForm = () => {
         <ul className="space-y-4">
           {products.map((product, index) => (
             <li key={index} className="bg-gray-100 p-4 rounded shadow-md">
-              <img
-                src={product.Image}
-                alt={product.Title}
-                className="w-20 h-20 object-cover rounded mb-4"
-              />
-              <h3 className="text-xl font-semibold">{product.Title}</h3>
-              <p className="text-gray-600">{product.Description}</p>
+              {product.image && (
+                <img
+                  src={product.image} // Display image from URL
+                  alt={product.title}
+                  className="w-20 h-20 object-cover rounded mb-4"
+                />
+              )}
+              <h3 className="text-xl font-semibold">{product.title}</h3>
+              <p className="text-gray-600">{product.description}</p>
               <p>
-                <strong>Category:</strong> {product.Category}
+                <strong>Category:</strong> {product.category}
               </p>
             </li>
           ))}
