@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,16 +25,13 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/products/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:3000/api/products/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await response.json();
 
       if (response.ok) {
@@ -67,7 +64,7 @@ const Contact = () => {
       {/* Hero Section */}
       <section
         className="relative bg-cover bg-center text-white flex items-center justify-center h-[50vh]"
-        style={{ backgroundImage: "url('/contact.webp" }}
+        style={{ backgroundImage: "url('/contact.webp')" }}
       >
         {/* Black Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -83,15 +80,15 @@ const Contact = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="contact-form py-16 bg-gray-100 flex  max-w-7xl mx-auto">
+      <section className="contact-form py-16 bg-gray-100 flex flex-wrap max-w-7xl mx-auto">
         {/* Form */}
-        <div className="w-1/2 flex flex-col gap-10 mx-auto">
-          <div className="bg-white shadow-lg p-6 rounded ">
+        <div className="w-full sm:w-1/2 flex flex-col gap-10 mx-auto">
+          <div className="bg-white shadow-lg p-6 rounded">
             <h2 className="text-3xl font-bold text-center mb-8 text-[#1a538c] underline">
               Global Reach
             </h2>
 
-            <div className="text-justify text-lg ">
+            <div className="text-justify text-lg">
               KAAG IMPEX Private Limited operates in key markets across North
               America, Europe, Asia, and Africa. Our extensive network of
               partners and agents enables us to navigate complex trade
@@ -103,10 +100,10 @@ const Contact = () => {
               Contact Information
             </h2>
 
-            <div className="space-y-4 ">
+            <div className="space-y-4">
               <p>
                 <strong>Address:</strong> At - 3-81, FF, Tulsi Complex, Kankrol,
-                Himatnagar, Sabarkantha-383001, Gujarat
+                Himatnagar, Sabarkantha-383001, Gujarat
               </p>
               <p>
                 <strong>Phone:</strong> <br />
@@ -120,16 +117,15 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className=" w-[40%] mx-auto shadow-md p-6 rounded ">
+
+        {/* Contact Form */}
+        <div className="w-full sm:w-1/2 mx-auto shadow-md p-6 rounded">
           <h2 className="text-3xl font-bold text-center mb-8 text-[#1a538c] underline">
             Get in Touch
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label
-                className="block text-sm font-semibold mb-2"
-                htmlFor="companyName"
-              >
+              <label className="block text-sm font-semibold mb-2" htmlFor="companyName">
                 Company Name
               </label>
               <input
@@ -144,10 +140,7 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label
-                className="block text-sm font-semibold mb-2"
-                htmlFor="fullName"
-              >
+              <label className="block text-sm font-semibold mb-2" htmlFor="fullName">
                 Full Name
               </label>
               <input
@@ -162,10 +155,7 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label
-                className="block text-sm font-semibold mb-2"
-                htmlFor="email"
-              >
+              <label className="block text-sm font-semibold mb-2" htmlFor="email">
                 Email Address
               </label>
               <input
@@ -180,10 +170,7 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label
-                className="block text-sm font-semibold mb-2"
-                htmlFor="phoneNumber"
-              >
+              <label className="block text-sm font-semibold mb-2" htmlFor="phoneNumber">
                 Phone Number
               </label>
               <input
@@ -198,10 +185,7 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label
-                className="block text-sm font-semibold mb-2"
-                htmlFor="productType"
-              >
+              <label className="block text-sm font-semibold mb-2" htmlFor="productType">
                 Product type
               </label>
               <input
@@ -215,12 +199,9 @@ const Contact = () => {
                 required
               />
             </div>
-            
+
             <div>
-              <label
-                className="block text-sm font-semibold mb-2"
-                htmlFor="productDetail"
-              >
+              <label className="block text-sm font-semibold mb-2" htmlFor="productDetail">
                 Product detail
               </label>
               <textarea
@@ -236,9 +217,13 @@ const Contact = () => {
             </div>
 
             {status.message && (
-              <div className={`p-3 rounded ${
-                status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-              }`}>
+              <div
+                className={`p-3 rounded ${
+                  status.type === "success"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
                 {status.message}
               </div>
             )}
@@ -251,8 +236,6 @@ const Contact = () => {
             </button>
           </form>
         </div>
-
-        {/* Contact Info */}
       </section>
 
       {/* Map Section */}

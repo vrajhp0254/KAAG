@@ -8,7 +8,7 @@ const Footer = () => {
   <div className="container mx-auto grid md:grid-cols-3 gap-8 px-4">
     {/* About Section */}
     <div>
-      <img className="h-28 my-2" src={logo} alt="KAAG IMPEX Logo" />
+      <img className="h-28 my-4" src={logo} alt="KAAG IMPEX Logo" />
       <h3 className="text-xl font-bold mb-4">About Us</h3>
       <p className="text-sm text-justify">
         We provide seamless import-export solutions to connect businesses
@@ -32,7 +32,7 @@ const Footer = () => {
           </a>
         </li>
         <li>
-          <a href="/Product" className="text-md hover:underline">
+          <a href="/products" className="text-md hover:underline">
             Product
           </a>
         </li>

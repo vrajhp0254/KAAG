@@ -23,7 +23,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             {/* Protect the Add Product page */}
             <Route
-              path="/addproducts"
+              path="/admin"
               element={<ProtectedRoute element={<AddProductForm />} />}
             />
             <Route path="/admin-login" element={<AdminLogin />} />
@@ -38,7 +38,7 @@ function ConditionalLayout({ children }) {
   const location = useLocation();
 
   // Exclude header and footer for specific pages
-  if (location.pathname === '/addproducts' || location.pathname === '/admin-login') {
+  if (location.pathname === '/admin' || location.pathname === '/admin-login') {
     return <>{children}</>; // Only render the children (without header/footer)
   }
 

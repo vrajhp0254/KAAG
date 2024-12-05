@@ -12,11 +12,20 @@ const AddProductForm = () => {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false); // New state to handle editing
 
+  const categories = [
+    { key: "agricultural", value: "Agricultural" },
+    { key: "industrial", value: "Industrial" },
+    { key: "electronics", value: "Electronics" },
+    { key: "chemicals", value: "Chemicals" },
+    { key: "textiles", value: "Textiles" },
+    { key: "others", value: "Others" }, // Added "others" category
+  ];
+
   // Fetch all products from MongoDB
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:3000/api/products");
+      const response = await axios.get("https://kaag-server.vercel.app/api/products");
       setProducts(response.data);
     } catch (error) {
       console.error("Failed to fetch products:", error);
@@ -40,10 +49,10 @@ const AddProductForm = () => {
     try {
       if (isEditing) {
         // Update product if we're editing an existing one
-        await axios.put(`http://localhost:3000/api/products/${formData._id}`, formData);
+        await axios.put(`https://kaag-server.vercel.app/api/products/${formData._id}`, formData);
       } else {
         // Add a new product if we're not editing
-        await axios.post("http://localhost:3000/api/products", formData);
+        await axios.post("https://kaag-server.vercel.app/api/products", formData);
       }
       fetchProducts(); // Refresh product list
       setFormData({
@@ -68,7 +77,7 @@ const AddProductForm = () => {
   const handleDelete = async (productId) => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:3000/api/products/${productId}`);
+      await axios.delete(`https://kaag-server.vercel.app/api/products/${productId}`);
       fetchProducts(); // Refresh product list
     } catch (error) {
       console.error("Failed to delete product:", error);
@@ -79,10 +88,10 @@ const AddProductForm = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-6">{isEditing ? "Edit Product" : "Add New Product"}</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">{isEditing ? "Edit Product" : "Add New Product"}</h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md p-6 rounded space-y-4"
+        className="bg-white shadow-md p-6 rounded space-y-4 max-w-4xl mx-auto"
       >
         <div>
           <label className="block font-semibold mb-2">Product Title</label>
@@ -106,16 +115,21 @@ const AddProductForm = () => {
             placeholder="Enter product description"
           ></textarea>
         </div>
-        <div>
+         <div>
           <label className="block font-semibold mb-2">Category</label>
-          <input
-            type="text"
+          <select
             name="category"
             value={formData.category}
             onChange={handleChange}
             className="w-full border p-2 rounded"
-            placeholder="Enter product category"
-          />
+          >
+            <option value="">Select a category</option>
+            {categories.map((category) => (
+              <option key={category.key} value={category.key}>
+                {category.value}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block font-semibold mb-2">Image URL</label>
@@ -131,20 +145,20 @@ const AddProductForm = () => {
             <img
               src={formData.image}
               alt="Product Preview"
-              className="mt-4 w-32 h-32 object-cover rounded"
+              className="mt-4 w-32 h-32 object-cover rounded mx-auto"
             />
           )}
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto mx-auto"
         >
           {loading ? (isEditing ? "Updating..." : "Adding...") : isEditing ? "Update Product" : "Add Product"}
         </button>
       </form>
 
       <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-6">Product List</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">Product List</h2>
         {loading ? (
           <p>Loading products...</p>
         ) : (
@@ -152,7 +166,7 @@ const AddProductForm = () => {
             {products.map((product) => (
               <li
                 key={product._id}
-                className="bg-gray-100 p-4 rounded shadow-md flex items-center"
+                className="bg-gray-100 p-4 rounded shadow-md flex items-center flex-wrap"
               >
                 {product.image && (
                   <img
@@ -161,25 +175,27 @@ const AddProductForm = () => {
                     className="w-20 h-20 object-cover rounded mr-4"
                   />
                 )}
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xl font-semibold">{product.title}</h3>
                   <p className="text-gray-600">{product.description}</p>
                   <p>
                     <strong>Category:</strong> {product.category}
                   </p>
                 </div>
-                <button
-                  onClick={() => handleEdit(product)}
-                  className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 ml-4"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(product._id)}
-                  className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 ml-4"
-                >
-                  Delete
-                </button>
+                <div className="mt-4 sm:mt-0 flex space-x-4">
+                  <button
+                    onClick={() => handleEdit(product)}
+                    className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(product._id)}
+                    className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </div>
               </li>
             ))}
           </ul>

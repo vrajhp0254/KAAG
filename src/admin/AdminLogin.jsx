@@ -10,7 +10,7 @@ const AdminLogin = () => {
   const handleLogin = () => {
     login(password); // Call login function from AuthContext
     if (password === "Kaag@1491") {
-      navigate("/addproducts"); // Redirect to protected route after successful login
+      navigate("/admin"); // Redirect to protected route after successful login
     }
   };
 

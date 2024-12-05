@@ -38,7 +38,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative w-full h-screen">
+    <section className="relative w-full lg:h-screen h-[60vh]">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         onSwiper={(swiper) => (swiperRef.current = swiper)} // Save Swiper instance to ref
@@ -60,7 +60,7 @@ const HeroSection = () => {
                 <h1 className="text-4xl font-bold mb-2">{slide.heading}</h1>
                 <p className="text-lg">{slide.subtext}</p>
                 <a
-              href="/product"
+              href="/products"
               className="border-2 border-white text-white font-bold py-2 my-4 px-4 rounded"
             >
               View More
