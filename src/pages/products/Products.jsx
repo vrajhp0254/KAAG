@@ -114,7 +114,8 @@ const Products = ({ onProductAdded }) => {
               </h3>
               <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {categorizedProducts.map((product, idx) => (
-                  <li
+                  <a href="/contact">
+                    <li
                     key={idx}
                     className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm"
                   >
@@ -131,10 +132,11 @@ const Products = ({ onProductAdded }) => {
                     <div className="mb-3 sm:mb-5 text-center">
                       <div className="w-10 sm:w-12 h-1 bg-[#1a538c] mx-auto"></div>
                     </div>
-                    <p className="text-sm sm:text-lg text-gray-700 text-center">
+                    <p className="text-sm sm:text-lg text-gray-700 text-justify">
                       {product.description}
                     </p>
                   </li>
+                  </a>
                 ))}
               </ul>
             </div>

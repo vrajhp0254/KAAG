@@ -25,7 +25,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/products/contact", {
+      const response = await fetch("https://kaag-server.vercel.app/api/products/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
