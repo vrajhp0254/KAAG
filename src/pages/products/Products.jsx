@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { NavLink } from "react-router-dom";
 const Products = ({ onProductAdded }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -114,7 +115,7 @@ const Products = ({ onProductAdded }) => {
               </h3>
               <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {categorizedProducts.map((product, idx) => (
-                  <a href="/contact">
+                  <NavLink to="/contact">
                     <li
                     key={idx}
                     className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm"
@@ -136,7 +137,7 @@ const Products = ({ onProductAdded }) => {
                       {product.description}
                     </p>
                   </li>
-                  </a>
+                  </NavLink>
                 ))}
               </ul>
             </div>
@@ -188,11 +189,11 @@ const Products = ({ onProductAdded }) => {
             At <span className="font-semibold">KAAG IMPEX PVT LTD</span>, we work closely with our partners to ensure every product meets the highest standards of quality, compliance, and sustainability. We adhere to international regulations and prioritize environmental and social responsibility in every transaction.
           </p>
           <div className="flex justify-center mt-4 sm:mt-6">
-            <a href="/about">
+            <NavLink to="/about">
               <button className="bg-[#7bd91d] hover:bg-[#669e2d] text-white py-2 px-4 sm:py-2 sm:px-6 rounded">
                 Learn More
               </button>
-            </a>
+            </NavLink>
           </div>
         </div>
       </section>

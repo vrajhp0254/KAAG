@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import { NavLink } from "react-router-dom";
 const HeroSection = () => {
   const swiperRef = useRef(null);
 
@@ -59,12 +60,12 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white text-center p-4">
                 <h1 className="text-4xl font-bold mb-2">{slide.heading}</h1>
                 <p className="text-lg">{slide.subtext}</p>
-                <a
-              href="/products"
+                <NavLink
+              to="/products"
               className="border-2 border-white text-white font-bold py-2 my-4 px-4 rounded"
             >
               View More
-            </a>
+            </NavLink>
               </div>
             </div>
           </SwiperSlide>
