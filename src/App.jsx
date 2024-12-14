@@ -10,11 +10,13 @@ import ProtectedRoute from "./admin/ProtectedRoute"; // Import the ProtectedRout
 import { AuthProvider } from "./admin/AuthContext"; // Import AuthProvider
 import AdminLogin from "./admin/AdminLogin"; // Admin login page
 import PropTypes from 'prop-types';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
+        <ScrollToTop />
         <ConditionalLayout>
           <Routes>
             <Route path="/" element={<Home />} />
