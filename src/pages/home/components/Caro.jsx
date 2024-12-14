@@ -21,7 +21,7 @@ const HeroSection = () => {
       subtext: 'Empowering industries with state-of-the-art machinery solutions.',
     },
     {
-      image: 'https://img.freepik.com/free-photo/display-fresh-ripe-organic-broccoli-salad-with-greens-vegetables-cotton-bag-weekend-farmer-s-market_169016-5708.jpg?t=st=1733210207~exp=1733213807~hmac=6fb0a80fe7300287cab943d12cd13d69ee63d9ebd4b0e317a05b666a3c769a41&w=1060',
+      image: '/agricultural.jpg',
       heading: 'Agricultural Products',
       subtext: 'From farms to markets, delivering quality and freshness worldwide.',
     },
@@ -31,7 +31,7 @@ const HeroSection = () => {
       subtext: 'Weaving trends and tradition for the global market.',
     },
     {
-      image: 'https://img.freepik.com/free-photo/beakers-equipment-table-factory-laboratory_1359-307.jpg?t=st=1733211977~exp=1733215577~hmac=d236df9bd5460977c2d3364d93ac46660285f828306a8ea7f08328d2a2a0f8b7&w=996',
+      image: '/chemical.jpg',
       heading: 'Chemicals & Raw Materials',
       subtext: 'Essential resources, fueling global progress.',
     },
