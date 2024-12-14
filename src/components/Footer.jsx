@@ -2,6 +2,8 @@ import React from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
+import { NavLink } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-8 ">
@@ -22,24 +24,24 @@ const Footer = () => {
       <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
       <ul className="space-y-2 text-sm">
         <li>
-          <a href="/" className="text-md hover:underline">
+          <NavLink to="/" className="text-md hover:underline">
             Home
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/about" className=" text-md hover:underline">
+          <NavLink to="/about" className=" text-md hover:underline">
             About Us
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/products" className="text-md hover:underline">
+          <NavLink to="/products" className="text-md hover:underline">
             Product
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="/contact" className=" text-md hover:underline">
+          <NavLink to="/contact" className=" text-md hover:underline">
             Contact Us
-          </a>
+          </NavLink>
         </li>
       </ul>
     </div>
