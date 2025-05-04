@@ -3,6 +3,8 @@ import Home from "./pages/home/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Header from "./components/Header";
+import Brochures from "./pages/Brochures";
+import Certificates from "./pages/Certificates";
 import Footer from "./components/Footer";
 import Products from "./pages/products/Products";
 import AddProductForm from "./admin/AddProducts";
@@ -23,6 +25,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/brochures" element={<Brochures />} />
+            <Route path="/certificates" element={<Certificates />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/admin/*" element={<ProtectedRoute element={<AddProductForm />} />} />
             <Route path="*" element={<Navigate to="/" replace />} />

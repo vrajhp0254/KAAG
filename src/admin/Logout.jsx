@@ -1,13 +1,15 @@
 import { useAuth } from "./AuthContext";
-import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {
   const { logout } = useAuth();
-  const navigate = useNavigate();
 
   const handleLogout = () => {
+    // First perform logout
     logout();
-    navigate("/admin-login");
+    // Force navigation to home page with replace to prevent back navigation
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 100);
   };
 
   return (

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+
 const Products = ({ onProductAdded }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,9 @@ const Products = ({ onProductAdded }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://kaag-server.vercel.app/api/products");
+        const response = await axios.get(
+          "https://kaag-server.vercel.app/api/products"
+        );
         setProducts(response.data);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -35,6 +38,9 @@ const Products = ({ onProductAdded }) => {
       { key: "electronics" },
       { key: "chemicals" },
       { key: "textiles" },
+      { key: "jewelary" },
+      { key: "tc" },
+      { key: "food" },
     ];
 
     const categorizedKeys = categories.map((c) => c.key.toLowerCase());
@@ -48,39 +54,101 @@ const Products = ({ onProductAdded }) => {
   };
 
   const categories = [
-    { title: "Agricultural Products", key: "agricultural" },
-    { title: "Industrial Machinery", key: "industrial" },
-    { title: "Consumer Electronics", key: "electronics" },
-    { title: "Chemicals and Raw Materials", key: "chemicals" },
-    { title: "Textiles and Apparel", key: "textiles" },
+    {
+      title: "Agricultural Products",
+      key: "agricultural",
+      brochureFile: "Agricultural Products.pdf",
+    },
+    {
+      title: "Industrial Machinery",
+      key: "industrial",
+      brochureFile: "Industrial Machinery.pdf",
+    },
+    {
+      title: "Consumer Electronics",
+      key: "electronics",
+      brochureFile: "Electronics.pdf",
+    },
+    {
+      title: "Chemicals and Raw Materials",
+      key: "chemicals",
+      brochureFile: "Chemicals and Raw Materials.pdf",
+    },
+    {
+      title: "Textiles and Apparel",
+      key: "textiles",
+      brochureFile: "Textiles and Garments.pdf",
+    },
+    {
+      title: "Imitation Jewelary",
+      key: "Jewellery",
+      brochureFile: "Imitation jewellery.pdf",
+    },
+    {
+      title: "Tiles and Ceramics Products",
+      key: "tc",
+      brochureFile: "Tiles and Ceramics Products.pdf",
+    },
+    {
+      title: "Food and Beverages",
+      key: "Food",
+      brochureFile: "Food and Beverages.pdf",
+    },
   ];
 
   const otherProducts = findOtherProducts();
 
+  const downloadCategoryBrochure = (categoryKey) => {
+    // Find the appropriate category
+    const category = categories.find(
+      (cat) => cat.key.toLowerCase() === categoryKey.toLowerCase()
+    );
+
+    if (category && category.brochureFile) {
+      // Create download link for the PDF
+      const link = document.createElement("a");
+      link.href = `brochures/${category.brochureFile}`;
+      link.download = category.brochureFile;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      // Fallback to contact page if brochure not found
+      window.location.href = "/contact";
+    }
+  };
+
   if (loading) {
-    return <p className="flex w-screen h-screen justify-center items-center space-x-2 text-xl">
-    <span>Loading products...</span>
-    <svg
-      className="animate-spin h-6 w-6 text-blue-500"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-      <path
-        d="M4 12a8 8 0 0 1 8-8"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-    </svg>
-  </p>
-  ;
+    return (
+      <p className="flex w-screen h-screen justify-center items-center space-x-2 text-xl">
+        <span>Loading products...</span>
+        <svg
+          className="animate-spin h-6 w-6 text-blue-500"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          />
+          <path
+            d="M4 12a8 8 0 0 1 8-8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
+          />
+        </svg>
+      </p>
+    );
   }
 
   return (
@@ -92,9 +160,12 @@ const Products = ({ onProductAdded }) => {
       >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative text-center px-4">
-          <h1 className="text-3xl sm:text-5xl font-bold mb-4">Products & Services</h1>
+          <h1 className="text-3xl sm:text-5xl font-bold mb-4">
+            Products & Services
+          </h1>
           <p className="text-lg sm:text-xl">
-            Offering a diverse range of goods across industries with quality and sustainability in focus.
+            Offering a diverse range of goods across industries with quality and
+            sustainability in focus.
           </p>
         </div>
       </section>
@@ -115,11 +186,12 @@ const Products = ({ onProductAdded }) => {
               </h3>
               <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {categorizedProducts.map((product, idx) => (
-                  <NavLink to="/contact">
-                    <li
+                  <li
                     key={idx}
-                    className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm"
+                    onClick={() => downloadCategoryBrochure(category.key)}
+                    className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm cursor-pointer flex flex-col"
                   >
+                    {/* Image container */}
                     <div className="w-full h-40 sm:h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
                       <img
                         src={product.image}
@@ -127,17 +199,19 @@ const Products = ({ onProductAdded }) => {
                         className="max-w-full max-h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-center text-[#1a538c]">
-                      {product.title}
-                    </h3>
-                    <div className="mb-3 sm:mb-5 text-center">
-                      <div className="w-10 sm:w-12 h-1 bg-[#1a538c] mx-auto"></div>
+
+                    {/* Title + Divider grouped */}
+                    <div className="mb-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-center text-[#1a538c] min-h-[64px] flex items-center justify-center underline">
+                        {product.title}
+                      </h3>
                     </div>
-                    <p className="text-sm sm:text-lg text-gray-700 text-justify">
+
+                    {/* Description */}
+                    <p className="text-sm sm:text-base text-gray-700 text-justify mt-2 flex-grow overflow-auto">
                       {product.description}
                     </p>
                   </li>
-                  </NavLink>
                 ))}
               </ul>
             </div>
@@ -152,27 +226,26 @@ const Products = ({ onProductAdded }) => {
             </h3>
             <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {otherProducts.map((product, idx) => (
-                <li
-                  key={idx}
-                  className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm"
-                >
-                  <div className="w-full h-40 sm:h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-center text-[#1a538c]">
-                    {product.title}
-                  </h3>
-                  <div className="mb-3 sm:mb-5 text-center">
-                    <div className="w-10 sm:w-12 h-1 bg-[#1a538c] mx-auto"></div>
-                  </div>
-                  <p className="text-sm sm:text-lg text-gray-700 text-center">
-                    {product.description}
-                  </p>
-                </li>
+                <NavLink key={idx} to="/contact">
+                  <li className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm h-[400px] flex flex-col">
+                    <div className="w-full h-40 sm:h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-center text-[#1a538c]">
+                      {product.title}
+                    </h3>
+                    <div className="mb-3 sm:mb-5 text-center">
+                      <div className="w-10 sm:w-12 h-1 bg-[#1a538c] mx-auto"></div>
+                    </div>
+                    <p className="text-sm sm:text-lg text-gray-700 text-center">
+                      {product.description}
+                    </p>
+                  </li>
+                </NavLink>
               ))}
             </ul>
           </div>
@@ -186,7 +259,11 @@ const Products = ({ onProductAdded }) => {
             Our Commitment
           </h2>
           <p className="text-sm sm:text-lg mb-6 sm:mb-8 text-justify">
-            At <span className="font-semibold">KAAG IMPEX PVT LTD</span>, we work closely with our partners to ensure every product meets the highest standards of quality, compliance, and sustainability. We adhere to international regulations and prioritize environmental and social responsibility in every transaction.
+            At <span className="font-semibold">KAAG IMPEX PVT LTD</span>, we
+            work closely with our partners to ensure every product meets the
+            highest standards of quality, compliance, and sustainability. We
+            adhere to international regulations and prioritize environmental and
+            social responsibility in every transaction.
           </p>
           <div className="flex justify-center mt-4 sm:mt-6">
             <NavLink to="/about">
@@ -199,6 +276,10 @@ const Products = ({ onProductAdded }) => {
       </section>
     </div>
   );
+};
+
+Products.propTypes = {
+  onProductAdded: PropTypes.func,
 };
 
 export default Products;

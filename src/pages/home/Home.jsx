@@ -1,5 +1,4 @@
-import React from "react";
-import { FaPlane, FaShip, FaTruck, FaGlobe } from "react-icons/fa";
+
 import Caro from "./components/Caro";
 import AboutUs from "./components/AboutUs";
 import Services from "./components/Services";

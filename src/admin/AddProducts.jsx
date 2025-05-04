@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const AddProductForm = () => {
@@ -18,6 +18,9 @@ const AddProductForm = () => {
     { key: "electronics", value: "Electronics" },
     { key: "chemicals", value: "Chemicals" },
     { key: "textiles", value: "Textiles" },
+    { key: "jewellery", value: "Jewellery" },
+    { key: "tc", value: "Tiles" },
+    { key: "food", value: "Food" },
     { key: "others", value: "Others" }, // Added "others" category
   ];
 
@@ -25,7 +28,9 @@ const AddProductForm = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("https://kaag-server.vercel.app/api/products");
+      const response = await axios.get(
+        "https://kaag-server.vercel.app/api/products"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("Failed to fetch products:", error);
@@ -49,10 +54,16 @@ const AddProductForm = () => {
     try {
       if (isEditing) {
         // Update product if we're editing an existing one
-        await axios.put(`https://kaag-server.vercel.app/api/products/${formData._id}`, formData);
+        await axios.put(
+          `https://kaag-server.vercel.app/api/products/${formData._id}`,
+          formData
+        );
       } else {
         // Add a new product if we're not editing
-        await axios.post("https://kaag-server.vercel.app/api/products", formData);
+        await axios.post(
+          "https://kaag-server.vercel.app/api/products",
+          formData
+        );
       }
       fetchProducts(); // Refresh product list
       setFormData({
@@ -77,7 +88,9 @@ const AddProductForm = () => {
   const handleDelete = async (productId) => {
     setLoading(true);
     try {
-      await axios.delete(`https://kaag-server.vercel.app/api/products/${productId}`);
+      await axios.delete(
+        `https://kaag-server.vercel.app/api/products/${productId}`
+      );
       fetchProducts(); // Refresh product list
     } catch (error) {
       console.error("Failed to delete product:", error);
@@ -88,7 +101,9 @@ const AddProductForm = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">{isEditing ? "Edit Product" : "Add New Product"}</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">
+        {isEditing ? "Edit Product" : "Add New Product"}
+      </h2>
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md p-6 rounded space-y-4 max-w-4xl mx-auto"
@@ -102,6 +117,7 @@ const AddProductForm = () => {
             onChange={handleChange}
             className="w-full border p-2 rounded"
             placeholder="Enter product title"
+            required
           />
         </div>
         <div>
@@ -113,15 +129,17 @@ const AddProductForm = () => {
             className="w-full border p-2 rounded"
             rows="4"
             placeholder="Enter product description"
+            required
           ></textarea>
         </div>
-         <div>
+        <div>
           <label className="block font-semibold mb-2">Category</label>
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
             className="w-full border p-2 rounded"
+            required
           >
             <option value="">Select a category</option>
             {categories.map((category) => (
@@ -140,6 +158,7 @@ const AddProductForm = () => {
             onChange={handleChange}
             className="w-full border p-2 rounded"
             placeholder="Enter image URL"
+            required
           />
           {formData.image && (
             <img
@@ -153,7 +172,13 @@ const AddProductForm = () => {
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full sm:w-auto mx-auto"
         >
-          {loading ? (isEditing ? "Updating..." : "Adding...") : isEditing ? "Update Product" : "Add Product"}
+          {loading
+            ? isEditing
+              ? "Updating..."
+              : "Adding..."
+            : isEditing
+            ? "Update Product"
+            : "Add Product"}
         </button>
       </form>
 

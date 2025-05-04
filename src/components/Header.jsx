@@ -86,6 +86,32 @@ const Header = () => {
             Products
           </NavLink>
           <NavLink
+            to="/brochures"
+            onClick={closeMenu}
+            className={({ isActive }) =>
+              `transition-colors duration-300 ${
+                isActive
+                  ? "text-blue-600 border-b-2 border-blue-600"
+                  : "hover:text-blue-600"
+              }`
+            }
+          >
+            Brochures
+          </NavLink>
+          <NavLink
+            to="/certificates"
+            onClick={closeMenu}
+            className={({ isActive }) =>
+              `transition-colors duration-300 ${
+                isActive
+                  ? "text-blue-600 border-b-2 border-blue-600"
+                  : "hover:text-blue-600"
+              }`
+            }
+          >
+            Certificates
+          </NavLink>
+          <NavLink
             to="/about"
             onClick={closeMenu}
             className={({ isActive }) =>
