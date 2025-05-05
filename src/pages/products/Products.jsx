@@ -112,6 +112,7 @@ const Products = ({ onProductAdded }) => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      window.location.href = "/contact";
     } else {
       // Fallback to contact page if brochure not found
       window.location.href = "/contact";
