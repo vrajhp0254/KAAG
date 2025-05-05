@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,7 @@ const Contact = () => {
     productType: "",
     productDetail: "",
   });
+  const [phoneError, setPhoneError] = useState("");
 
   const [status, setStatus] = useState({
     message: "",
@@ -16,22 +17,38 @@ const Contact = () => {
   });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+
+    // Phone number validation
+    if (name === "phoneNumber") {
+      const phoneRegex = /^(\+91|91)?[6-9][0-9]{9}$/
+;
+      if (value === "" || phoneRegex.test(value)) {
+        setPhoneError("");
+      } else {
+        setPhoneError("Please enter a valid phone number (e.g. +919876543210)");
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://kaag-server.vercel.app/api/products/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://kaag-server.vercel.app/api/products/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await response.json();
 
       if (response.ok) {
@@ -125,7 +142,10 @@ const Contact = () => {
           </h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="companyName">
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="companyName"
+              >
                 Company Name
               </label>
               <input
@@ -140,7 +160,10 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="fullName">
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="fullName"
+              >
                 Full Name
               </label>
               <input
@@ -155,7 +178,10 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="email">
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="email"
+              >
                 Email Address
               </label>
               <input
@@ -170,7 +196,10 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="phoneNumber">
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="phoneNumber"
+              >
                 Phone Number
               </label>
               <input
@@ -179,13 +208,22 @@ const Contact = () => {
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="w-full border rounded p-2"
-                placeholder="Enter your phone number"
+                className={`w-full border rounded p-2 ${
+                  phoneError ? "border-red-500" : ""
+                }`}
+                placeholder="e.g. +919876543210"
                 required
               />
+              {phoneError && (
+                <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+              )}
             </div>
+
             <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="productType">
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="productType"
+              >
                 Product type
               </label>
               <input
@@ -201,7 +239,10 @@ const Contact = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold mb-2" htmlFor="productDetail">
+              <label
+                className="block text-sm font-semibold mb-2"
+                htmlFor="productDetail"
+              >
                 Product detail
               </label>
               <textarea
