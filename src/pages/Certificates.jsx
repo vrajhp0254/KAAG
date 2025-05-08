@@ -10,9 +10,9 @@ const Certificates = () => {
     const staticCertificates = [
       {
         id: 1,
-        title: "APIDA CERTIFICATE",
-        pdfUrl: "/certificates/APIDA CERTIFICATE.pdf",
-        thumbnailUrl: "/thumbnail/APIDA CERTIFICATE.jpg",
+        title: "APEDA CERTIFICATE",
+        pdfUrl: "/certificates/APEDA CERTIFICATE.pdf",
+        thumbnailUrl: "/thumbnail/APEDA CERTIFICATE.jpg",
       },
       {
         id: 2,

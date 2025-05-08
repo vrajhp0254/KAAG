@@ -23,12 +23,12 @@ const HeroSection = () => {
     },
     {
       image: '/agricultural.jpg',
-      heading: 'Agricultural Products',
+      heading: 'Agricultural Products and Spices',
       subtext: 'From farms to markets, delivering quality and freshness worldwide.',
     },
     {
       image: 'https://img.freepik.com/free-photo/textiles-sale_1398-3775.jpg?t=st=1733211022~exp=1733214622~hmac=ab31bd66837b20f9dd74272c800e0543c7b4e9fb3d8835eb1e78a4ed556343b0&w=826',
-      heading: 'Textiles & Apparel',
+      heading: 'Textiles & Garments',
       subtext: 'Weaving trends and tradition for the global market.',
     },
     {

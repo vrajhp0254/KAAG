@@ -27,11 +27,7 @@ const Footer = () => {
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/about" className=" text-md hover:underline">
-            About Us
-          </NavLink>
-        </li>
+        
         <li>
           <NavLink to="/products" className="text-md hover:underline">
             Product
@@ -45,6 +41,11 @@ const Footer = () => {
         <li>
           <NavLink to="/certificates" className="text-md hover:underline">
           Certificates
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/about" className=" text-md hover:underline">
+            About Us
           </NavLink>
         </li>
         <li>
@@ -65,10 +66,10 @@ const Footer = () => {
 
       {/* Social Media Icons */}
       <div className="flex space-x-6">
-        <a href="https://www.facebook.com" className="text-white text-2xl hover:text-blue-500 ">
+        <a href="https://www.facebook.com/profile.php?id=61576185953100" className="text-white text-2xl hover:text-blue-500 ">
           <i className="fab fa-facebook-f"></i>
         </a>
-        <a href="https://www.linkedin.com" className="text-white text-2xl hover:text-blue-700">
+        <a href="https://www.linkedin.com/company/kaag-impex-pvt-ltd/" className="text-white text-2xl hover:text-blue-700">
           <i className="fab fa-linkedin-in"></i>
         </a>
         <a href="https://www.instagram.com" className="text-white text-2xl hover:text-pink-500">

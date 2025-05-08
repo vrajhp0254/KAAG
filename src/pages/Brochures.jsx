@@ -10,9 +10,9 @@ const Brochures = () => {
     const staticBrochures = [
       {
         id: 1,
-        title: "Agricultural Products",
-        pdfUrl: "brochures/Agricultural Products.pdf",
-        thumbnailUrl: "/thumbnail/Agricultural Products.jpg",
+        title: "Agricultural Products and Spices",
+        pdfUrl: "brochures/Agricultural Products and Spices.pdf",
+        thumbnailUrl: "/thumbnail/Agricultural Products and Spices.jpg",
       },
       {
         id: 2,

@@ -38,7 +38,7 @@ const Products = ({ onProductAdded }) => {
       { key: "electronics" },
       { key: "chemicals" },
       { key: "textiles" },
-      { key: "jewelary" },
+      { key: "jewellery" },
       { key: "tc" },
       { key: "food" },
     ];
@@ -55,9 +55,9 @@ const Products = ({ onProductAdded }) => {
 
   const categories = [
     {
-      title: "Agricultural Products",
+      title: "Agricultural Products and Spices",
       key: "agricultural",
-      brochureFile: "Agricultural Products.pdf",
+      brochureFile: "Agricultural Products and Spices.pdf",
     },
     {
       title: "Industrial Machinery",
@@ -75,13 +75,13 @@ const Products = ({ onProductAdded }) => {
       brochureFile: "Chemicals and Raw Materials.pdf",
     },
     {
-      title: "Textiles and Apparel",
+      title: "Textiles and Garments",
       key: "textiles",
       brochureFile: "Textiles and Garments.pdf",
     },
     {
       title: "Imitation Jewelary",
-      key: "Jewellery",
+      key: "jewellery",
       brochureFile: "Imitation jewellery.pdf",
     },
     {
@@ -91,7 +91,7 @@ const Products = ({ onProductAdded }) => {
     },
     {
       title: "Food and Beverages",
-      key: "Food",
+      key: "food",
       brochureFile: "Food and Beverages.pdf",
     },
   ];
@@ -112,11 +112,10 @@ const Products = ({ onProductAdded }) => {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.location.href = "/contact";
-    } else {
-      // Fallback to contact page if brochure not found
-      window.location.href = "/contact";
     }
+  };
+  const routetocontact = () => {
+    window.location.href = "/contact";
   };
 
   if (loading) {
@@ -182,14 +181,19 @@ const Products = ({ onProductAdded }) => {
 
           return (
             <div key={index} className="mb-8 sm:mb-12">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1a538c] underline mb-4">
+              <h3
+                className="text-xl sm:text-2xl font-bold text-[#1a538c] underline mb-4"
+                onClick={() => downloadCategoryBrochure(category.key)}
+              >
                 {category.title}
               </h3>
-              <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <ul
+                className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                onClick={() => routetocontact()}
+              >
                 {categorizedProducts.map((product, idx) => (
                   <li
                     key={idx}
-                    onClick={() => downloadCategoryBrochure(category.key)}
                     className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm cursor-pointer flex flex-col"
                   >
                     {/* Image container */}
@@ -228,7 +232,11 @@ const Products = ({ onProductAdded }) => {
             <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {otherProducts.map((product, idx) => (
                 <NavLink key={idx} to="/contact">
-                  <li className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm h-[400px] flex flex-col">
+                  <li
+                    key={idx}
+                    className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 mx-auto w-full max-w-sm cursor-pointer flex flex-col"
+                  >
+                    {/* Image container */}
                     <div className="w-full h-40 sm:h-48 flex items-center justify-center bg-gray-100 rounded mb-4">
                       <img
                         src={product.image}
@@ -236,13 +244,16 @@ const Products = ({ onProductAdded }) => {
                         className="max-w-full max-h-full object-contain"
                       />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-center text-[#1a538c]">
-                      {product.title}
-                    </h3>
-                    <div className="mb-3 sm:mb-5 text-center">
-                      <div className="w-10 sm:w-12 h-1 bg-[#1a538c] mx-auto"></div>
+
+                    {/* Title + Divider grouped */}
+                    <div className="mb-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-center text-[#1a538c] min-h-[64px] flex items-center justify-center underline">
+                        {product.title}
+                      </h3>
                     </div>
-                    <p className="text-sm sm:text-lg text-gray-700 text-center">
+
+                    {/* Description */}
+                    <p className="text-sm sm:text-base text-gray-700 text-justify mt-2 flex-grow overflow-auto">
                       {product.description}
                     </p>
                   </li>
