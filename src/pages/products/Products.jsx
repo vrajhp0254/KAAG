@@ -67,7 +67,7 @@ const Products = ({ onProductAdded }) => {
     {
       title: "Consumer Electronics",
       key: "electronics",
-      brochureFile: "Electronics.pdf",
+      brochureFile: "Consumer Electronics.pdf",
     },
     {
       title: "Chemicals and Raw Materials",
