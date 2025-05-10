@@ -72,7 +72,7 @@ const Footer = () => {
         <a href="https://www.linkedin.com/company/kaag-impex-pvt-ltd/" className="text-white text-2xl hover:text-blue-700">
           <i className="fab fa-linkedin-in"></i>
         </a>
-        <a href="https://www.instagram.com" className="text-white text-2xl hover:text-pink-500">
+        <a href="https://www.instagram.com/kaagimpex/" className="text-white text-2xl hover:text-pink-500">
           <i className="fab fa-instagram"></i>
         </a>
       </div>
